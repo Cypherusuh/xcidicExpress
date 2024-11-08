@@ -1,5 +1,5 @@
-// src/models/user.ts
 import { Sequelize, DataTypes, Model } from 'sequelize';
+import { sequelize } from '../configs/dbConfig';
 
 export class User extends Model {
     public id!: number;
@@ -22,7 +22,6 @@ User.init(
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
         },
         password: {
             type: DataTypes.STRING,
@@ -32,6 +31,7 @@ User.init(
     {
         modelName: 'User',
         tableName: 'user',
-        sequelize: new Sequelize
+        sequelize,
+        timestamps: false,
     }
 );

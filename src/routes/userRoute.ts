@@ -1,10 +1,12 @@
 import { Router } from "express";
-import { getAllUser, postUser } from "../controllers/userController";
+import { getAllUser, getProfile, postUser } from "../controllers/userController";
 import { validateUser } from "../middlewares/validateUserMid";
+import { authenticateJWT } from "../middlewares/authMid";
 
 const userRoute: Router = Router();
 
-userRoute.get('/users', getAllUser);
-userRoute.post('/users', validateUser ,postUser);
+userRoute.get('/', getAllUser);
+userRoute.post('/', validateUser ,postUser);
+userRoute.get('/profile', authenticateJWT, getProfile);
 
 export default userRoute;

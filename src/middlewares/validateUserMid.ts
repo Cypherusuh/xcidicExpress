@@ -1,7 +1,6 @@
 import Joi from 'joi';
 import { Request, Response, NextFunction } from 'express';
 
-// Define the Joi schema for validation
 const userSchema = Joi.object({
   name: Joi.string().required().messages({
     'string.base': 'Name must be a string',
@@ -19,7 +18,7 @@ const userSchema = Joi.object({
 });
 
 export const validateUser = (req: Request, res: Response, next: NextFunction): void => {
-  const { error } = userSchema.validate(req.body, { abortEarly: false }); // validate without aborting on the first error
+  const { error } = userSchema.validate(req.body, { abortEarly: false }); 
   if (error) {
     res.status(400).json({ errors: error.details });
   }
